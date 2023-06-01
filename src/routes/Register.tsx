@@ -17,6 +17,7 @@ const Register = () => {
   useEffect(() => {
     setNotification('');
     if (token) {
+      localStorage.setItem('TOKEN', token);
       navigate('/');
       return;
     }
@@ -47,6 +48,7 @@ const Register = () => {
       setUsername('');
       setPassword('');
       setConfirmPassword('');
+      navigate('/');
     }
   }
 

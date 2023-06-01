@@ -1,16 +1,53 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+type Props = {
+  token: string;
+  route: string;
+  setRoute: Dispatch<SetStateAction<string>>;
+  setToken: Dispatch<SetStateAction<string>>;
+};
+
+const Navbar = ({ token, route, setRoute, setToken }: Props) => {
   return (
     <nav className='max-w-7xl flex justify-between items-center mx-auto'>
       <h1>Logo</h1>
       <div className='flex justify-between gap-12'>
-        <Link to='/'>Home</Link>
-        <Link to='/pricing'>Pricing</Link>
-        <Link to='/routines'>Routines</Link>
-        <Link to='/activities'>Activities</Link>
+        <Link to='/' onClick={() => setRoute('home')}>
+          Home
+        </Link>
+        <Link to='/pricing' onClick={() => setRoute('pricing')}>
+          Pricing
+        </Link>
+        <Link to='/routines' onClick={() => setRoute('routines')}>
+          Routines
+        </Link>
+        <Link to='/activities' onClick={() => setRoute('activities')}>
+          Activities
+        </Link>
       </div>
-      <Link to='/register'>Join Us</Link>
+      {token && (
+        <Link
+          to='/'
+          onClick={() => {
+            localStorage.clear();
+            setRoute('home');
+            setToken('');
+          }}
+        >
+          Sign Out
+        </Link>
+      )}
+      {!token && route === 'register' && (
+        <Link to='/login' onClick={() => setRoute('login')}>
+          Sign In
+        </Link>
+      )}
+      {!token && route !== 'register' && (
+        <Link to='/register' onClick={() => setRoute('register')}>
+          Join Us
+        </Link>
+      )}
     </nav>
   );
 };

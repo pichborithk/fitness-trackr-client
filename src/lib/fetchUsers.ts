@@ -16,3 +16,18 @@ export async function registerUser(
   const result = await response.json();
   return result;
 }
+
+export async function userLogin(
+  username: string,
+  password: string
+): Promise<TokenFetch> {
+  const response = await fetch(`${BASE_URL}/users/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username, password }),
+  });
+  const result = await response.json();
+  return result;
+}

@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 export type RootContext = {
   token: string;
   setToken: Dispatch<SetStateAction<string>>;
+  setRoute: Dispatch<SetStateAction<string>>;
 };
 
 export type TokenFetch = {
