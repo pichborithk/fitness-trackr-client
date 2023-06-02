@@ -21,3 +21,29 @@ export type UserData = {
   id: number;
   username: string;
 };
+
+export type Routine = {
+  creatorId: number;
+  creatorName: string;
+  goal: string;
+  id: number;
+  isPublic: true;
+  name: string;
+  activities: RoutineActivity[];
+};
+
+export type RoutineActivity = {
+  id: number;
+  name: string;
+  count: number;
+  description: string;
+  duration: number;
+  routineActivityId: number;
+  routineId: number;
+};
+
+export type Activity = {
+  id: number;
+  description: string;
+  name: string;
+};
