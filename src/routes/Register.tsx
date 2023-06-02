@@ -5,7 +5,7 @@ import { RootContext } from '../types/types';
 import { registerUser } from '../lib/fetchUsers';
 
 const Register = () => {
-  const { token, setToken } = useOutletContext<RootContext>();
+  const { token, setToken, setRoute } = useOutletContext<RootContext>();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -40,15 +40,19 @@ const Register = () => {
         setNotification(result.message);
         return;
       }
-      setToken(result.token);
-      localStorage.setItem('TOKEN', result.token);
+
+      if (result.token) {
+        setToken(result.token);
+        localStorage.setItem('TOKEN', result.token);
+        navigate('/');
+        setRoute('home');
+      }
     } catch (error) {
       console.error(error);
     } finally {
       setUsername('');
       setPassword('');
       setConfirmPassword('');
-      navigate('/');
     }
   }
 
@@ -70,7 +74,7 @@ const Register = () => {
           value={username}
           onChange={event => setUsername(event.target.value)}
           required
-          className='rounded-md border border-solid border-secondary px-4 py-2 text-slate-700 focus:outline-teal-500'
+          className='border-secondary rounded-md border border-solid px-4 py-2 text-slate-700 focus:outline-teal-500'
         />
       </fieldset>
       <fieldset className='relative flex w-full flex-col'>
