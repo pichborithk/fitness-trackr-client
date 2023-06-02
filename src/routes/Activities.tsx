@@ -6,14 +6,14 @@ const Activities = () => {
   const { activities } = useOutletContext<RootContext>();
 
   return (
-    <div>
-      <h1>Activities</h1>
-      <div>
+    <>
+      <h1 className='text-4xl'>Activities</h1>
+      <div className='grid grid-flow-row grid-cols-4 gap-4'>
         {activities.map(activity => (
           <Activity key={activity.id} activity={activity} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

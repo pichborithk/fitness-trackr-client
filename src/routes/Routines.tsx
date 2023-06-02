@@ -5,14 +5,14 @@ import { Routine } from '../components';
 const Routines = () => {
   const { publicRoutines } = useOutletContext<RootContext>();
   return (
-    <div>
-      <h1>Routines</h1>
+    <>
+      <h1 className='text-4xl'>Routines</h1>
       <div>
         {publicRoutines.map(routine => (
           <Routine routine={routine} key={routine.id} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
