@@ -40,6 +40,5 @@ export async function fetchUserData(token: string): Promise<UserData> {
     },
   });
   const result = await response.json();
-  console.log(result);
   return result;
 }

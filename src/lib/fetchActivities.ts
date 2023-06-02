@@ -1,6 +1,8 @@
+import { Activity } from '../types/types';
+
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 
-export async function fetchActivities() {
+export async function fetchActivities(): Promise<Activity[]> {
   const response = await fetch(`${BASE_URL}/activities`, {
     headers: {
       'Content-Type': 'application/json',
@@ -8,6 +10,5 @@ export async function fetchActivities() {
   });
 
   const result = await response.json();
-  console.log(result);
   return result;
 }

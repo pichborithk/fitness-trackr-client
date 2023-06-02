@@ -1,6 +1,8 @@
+import { Routine } from '../types/types';
+
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 
-export async function fetchPublicRoutines() {
+export async function fetchPublicRoutines(): Promise<Routine[]> {
   const response = await fetch(`${BASE_URL}/routines`, {
     headers: {
       'Content-Type': 'application/json',
@@ -8,6 +10,5 @@ export async function fetchPublicRoutines() {
   });
 
   const result = await response.json();
-  console.log(result);
   return result;
 }
