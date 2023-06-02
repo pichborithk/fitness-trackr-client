@@ -1,4 +1,4 @@
-import { TokenFetch } from '../types/types';
+import { TokenFetch, UserData } from '../types/types';
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 
@@ -29,5 +29,17 @@ export async function userLogin(
     body: JSON.stringify({ username, password }),
   });
   const result = await response.json();
+  return result;
+}
+
+export async function fetchUserData(token: string): Promise<UserData> {
+  const response = await fetch(`${BASE_URL}/users/me`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await response.json();
+  console.log(result);
   return result;
 }

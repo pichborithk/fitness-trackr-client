@@ -7,13 +7,17 @@ export type RootContext = {
 };
 
 export type TokenFetch = {
-  success: boolean;
   message: string;
-  token: string;
-  user: {
+  token?: string;
+  user?: {
     id: number;
     username: string;
   };
-  error: string | null;
+  error?: string;
   name?: string;
+};
+
+export type UserData = {
+  id: number;
+  username: string;
 };

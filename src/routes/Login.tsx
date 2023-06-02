@@ -31,15 +31,18 @@ const Login = () => {
         setNotification(result.message);
         return;
       }
-      setToken(result.token);
-      localStorage.setItem('TOKEN', result.token);
+
+      if (result.token) {
+        setToken(result.token);
+        localStorage.setItem('TOKEN', result.token);
+        setRoute('home');
+        navigate('/');
+      }
     } catch (error) {
       console.error(error);
     } finally {
       setUsername('');
       setPassword('');
-      setRoute('home');
-      navigate('/');
     }
   }
 
@@ -61,7 +64,7 @@ const Login = () => {
           value={username}
           onChange={event => setUsername(event.target.value)}
           required
-          className='rounded-md border border-solid border-secondary px-4 py-2 text-slate-700 focus:outline-teal-500'
+          className='border-secondary rounded-md border border-solid px-4 py-2 text-slate-700 focus:outline-teal-500'
         />
       </fieldset>
       <fieldset className='relative flex w-full flex-col'>
