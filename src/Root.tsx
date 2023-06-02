@@ -13,7 +13,7 @@ const Root = () => {
   const [route, setRoute] = useState('home');
   const [userData, setUserData] = useState<UserData>({ id: 0, username: '' });
   const [publicRoutines, setPublicRoutines] = useState<Routine[]>([]);
-  const [activites, setActivities] = useState<Activity[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   async function getUserData(token: string) {
     try {
@@ -64,7 +64,9 @@ const Root = () => {
         setToken={setToken}
       />
       <div className='mx-auto flex min-h-screen max-w-7xl flex-col items-center'>
-        <Outlet context={{ token, setToken, setRoute }} />
+        <Outlet
+          context={{ token, publicRoutines, activities, setToken, setRoute }}
+        />
       </div>
     </>
   );

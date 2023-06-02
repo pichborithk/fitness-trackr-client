@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction } from 'react';
 
 export type RootContext = {
   token: string;
+  publicRoutines: Routine[];
+  activities: Activity[];
   setToken: Dispatch<SetStateAction<string>>;
   setRoute: Dispatch<SetStateAction<string>>;
 };
