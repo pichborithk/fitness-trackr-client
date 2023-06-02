@@ -10,7 +10,7 @@ type Props = {
 
 const Navbar = ({ token, route, setRoute, setToken }: Props) => {
   return (
-    <nav className='mx-auto flex max-w-7xl items-center justify-between'>
+    <nav className='flex items-center justify-between'>
       <h1>Logo</h1>
       <div className='flex justify-between gap-12'>
         <Link to='/' onClick={() => setRoute('home')}>

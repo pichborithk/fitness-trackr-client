@@ -63,7 +63,7 @@ const Root = () => {
         setRoute={setRoute}
         setToken={setToken}
       />
-      <div className='mx-auto flex min-h-screen max-w-7xl flex-col items-center'>
+      <div className='flex min-h-screen flex-col items-center'>
         <Outlet
           context={{ token, publicRoutines, activities, setToken, setRoute }}
         />
