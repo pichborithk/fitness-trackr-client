@@ -6,12 +6,12 @@ type Props = {
 
 const RoutineActivity = ({ activity }: Props) => {
   return (
-    <>
-      <h3>{activity.name}</h3>
-      <p>Description: {activity.description}</p>
+    <div>
+      <h3 className='text-xl font-bold'>{activity.name}</h3>
+      {/* <p>Description: {activity.description}</p> */}
       <p>Count: {activity.description} reps</p>
       <p>Durations: {activity.duration} minutes</p>
-    </>
+    </div>
   );
 };
 export default RoutineActivity;

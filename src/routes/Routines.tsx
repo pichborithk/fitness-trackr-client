@@ -7,7 +7,7 @@ const Routines = () => {
   return (
     <>
       <h1 className='text-4xl'>Routines</h1>
-      <div>
+      <div className='flex flex-col gap-6'>
         {publicRoutines.map(routine => (
           <Routine routine={routine} key={routine.id} />
         ))}
