@@ -59,13 +59,21 @@ const Root = () => {
     <>
       <Navbar
         route={route}
-        token={token}
+        userData={userData}
         setRoute={setRoute}
         setToken={setToken}
+        setUserData={setUserData}
       />
-      <div className='flex min-h-screen flex-col items-center'>
+      <div className='flex min-h-screen flex-col items-center gap-4'>
         <Outlet
-          context={{ token, publicRoutines, activities, setToken, setRoute }}
+          context={{
+            token,
+            publicRoutines,
+            activities,
+            setToken,
+            setRoute,
+            userData,
+          }}
         />
       </div>
     </>
