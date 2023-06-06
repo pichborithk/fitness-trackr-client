@@ -7,7 +7,7 @@ const Activities = () => {
 
   return (
     <>
-      <h1 className='text-4xl'>Activities</h1>
+      <h1 className='text-4xl font-bold'>Activities</h1>
       <div className='grid grid-flow-row grid-cols-4 gap-4'>
         {activities.map(activity => (
           <Activity key={activity.id} activity={activity} />

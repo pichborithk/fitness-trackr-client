@@ -5,7 +5,7 @@ type Props = {
   routine: Routine;
 };
 
-const Routine = ({ routine }: Props) => {
+const RoutineCard = ({ routine }: Props) => {
   return (
     <div
       className='flex max-h-96 basis-96 overflow-hidden rounded-2xl
@@ -35,4 +35,4 @@ const Routine = ({ routine }: Props) => {
   );
 };
 
-export default Routine;
+export default RoutineCard;

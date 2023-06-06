@@ -6,6 +6,7 @@ export type RootContext = {
   activities: Activity[];
   setToken: Dispatch<SetStateAction<string>>;
   setRoute: Dispatch<SetStateAction<string>>;
+  userData: UserData;
 };
 
 export type TokenFetch = {
