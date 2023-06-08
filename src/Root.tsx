@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Navbar } from './components';
 import { useEffect, useState } from 'react';
 import { Activity, Routine, UserData } from './types/types';
-import { fetchUserData } from './lib/fetchUsers';
+import { fetchUserData, fetchUserRoutines } from './lib/fetchUsers';
 import { fetchPublicRoutines } from './lib/fetchRoutines';
 import { fetchActivities } from './lib/fetchActivities';
 
@@ -14,6 +14,7 @@ const Root = () => {
   const [userData, setUserData] = useState<UserData>({ id: 0, username: '' });
   const [publicRoutines, setPublicRoutines] = useState<Routine[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [userRoutines, setUserRoutines] = useState<Routine[]>([]);
 
   async function getUserData(token: string) {
     try {
@@ -42,6 +43,20 @@ const Root = () => {
     }
   }
 
+  async function getUserRoutines(token: string, username: string) {
+    if (!userData.username || !userData.id || !token) {
+      setUserRoutines([]);
+      return;
+    }
+    try {
+      const result = await fetchUserRoutines(token, username);
+      // console.log(result);
+      setUserRoutines(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     (async function () {
       await getPublicRoutines();
@@ -55,6 +70,10 @@ const Root = () => {
     }
   }, [token]);
 
+  useEffect(() => {
+    getUserRoutines(token, userData.username);
+  }, [token, userData]);
+
   return (
     <>
       <Navbar
@@ -64,7 +83,7 @@ const Root = () => {
         setToken={setToken}
         setUserData={setUserData}
       />
-      <div className='flex min-h-screen flex-col items-center gap-4'>
+      <div className='mb-8 flex min-h-screen flex-col items-center gap-4'>
         <Outlet
           context={{
             token,
@@ -73,6 +92,7 @@ const Root = () => {
             setToken,
             setRoute,
             userData,
+            userRoutines,
           }}
         />
       </div>

@@ -6,6 +6,7 @@ import './index.css';
 import Root from './Root';
 import {
   Activities,
+  Edit,
   ErrorPage,
   Home,
   Login,
@@ -14,8 +15,11 @@ import {
   Pricing,
   Profile,
   Register,
+  RoutineActivities,
   Routines,
+  ViewRoutine,
 } from './routes';
+import AddActivities from './routes/AddActivities';
 
 const router = createBrowserRouter([
   {
@@ -27,14 +31,33 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      { path: 'activities', element: <Activities /> },
+      {
+        path: 'activities',
+        children: [
+          { index: true, element: <Activities /> },
+          { path: 'create', element: <NewActivity /> },
+        ],
+      },
       { path: 'login', element: <Login /> },
-      { path: 'new-activity', element: <NewActivity /> },
-      { path: 'new-routine', element: <NewRoutine /> },
       { path: 'pricing', element: <Pricing /> },
       { path: 'profile', element: <Profile /> },
       { path: 'register', element: <Register /> },
-      { path: 'routines', element: <Routines /> },
+      {
+        path: 'routines',
+        children: [
+          { index: true, element: <Routines /> },
+          {
+            path: ':routineId',
+            element: <ViewRoutine />,
+            children: [
+              { index: true, element: <RoutineActivities /> },
+              { path: 'edit', element: <Edit /> },
+              { path: 'add_activities', element: <AddActivities /> },
+            ],
+          },
+          { path: 'create', element: <NewRoutine /> },
+        ],
+      },
     ],
   },
 ]);

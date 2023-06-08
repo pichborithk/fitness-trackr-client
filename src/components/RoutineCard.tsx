@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { RoutineActivity } from '.';
 import { Routine } from '../types/types';
 
@@ -27,9 +28,12 @@ const RoutineCard = ({ routine }: Props) => {
             <RoutineActivity activity={activity} key={activity.id} />
           ))}
         </div>
-        <span className='absolute bottom-2 right-6 text-sky-700 underline'>
+        <Link
+          to={`/routines/${routine.id}`}
+          className='absolute bottom-2 right-6 text-sky-700 underline'
+        >
           See more...
-        </span>
+        </Link>
       </div>
     </div>
   );
