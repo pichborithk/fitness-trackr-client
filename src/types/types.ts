@@ -7,6 +7,11 @@ export type RootContext = {
   setToken: Dispatch<SetStateAction<string>>;
   setRoute: Dispatch<SetStateAction<string>>;
   userData: UserData;
+  userRoutines: Routine[];
+};
+
+export type ViewRoutineContext = {
+  routine: Routine;
 };
 
 export type TokenFetch = {
