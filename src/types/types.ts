@@ -55,3 +55,14 @@ export type Activity = {
   description: string;
   name: string;
 };
+
+export type NewRoutineData = {
+  name: string;
+  goal: string;
+  isPublic: boolean;
+};
+
+export type NewActivityData = {
+  name: string;
+  description: string;
+};
