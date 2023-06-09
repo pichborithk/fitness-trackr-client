@@ -43,3 +43,17 @@ export async function updateRoutine(
   });
   return await response.json();
 }
+
+export async function deleteRoutine(
+  id: number,
+  token: string
+): Promise<Routine & { success: boolean }> {
+  const response = await fetch(`${BASE_URL}/routines/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await response.json();
+}
