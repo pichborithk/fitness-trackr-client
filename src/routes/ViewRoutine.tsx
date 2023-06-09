@@ -10,8 +10,14 @@ import { useEffect, useState } from 'react';
 import { deleteRoutine } from '../lib/fetchRoutines';
 
 const ViewRoutine = () => {
-  const { userRoutines, publicRoutines, token, userData, refreshData } =
-    useOutletContext<RootContext>();
+  const {
+    userRoutines,
+    publicRoutines,
+    token,
+    userData,
+    refreshData,
+    activities,
+  } = useOutletContext<RootContext>();
   const [routine, setRoutine] = useState<Routine | null>(null);
 
   const { routineId } = useParams();
@@ -35,6 +41,7 @@ const ViewRoutine = () => {
       const result = await deleteRoutine(id, token);
       console.log(result);
       if (result?.success) {
+        await refreshData();
         navigate('/routines');
       }
     } catch (error) {
@@ -70,7 +77,7 @@ const ViewRoutine = () => {
                     Edit
                   </Link>
                   <Link
-                    to={`/routines/${routineId}/add_activities`}
+                    to={`/routines/${routineId}/add_activity`}
                     className='ml-2 rounded-md border-2 border-teal-500 px-2 py-1 text-sm text-teal-500 hover:bg-teal-500 hover:text-white'
                   >
                     Add Activities
@@ -80,7 +87,15 @@ const ViewRoutine = () => {
             )}
           </div>
         </div>
-        <Outlet context={{ routine, token, userData, refreshData }} />
+        <Outlet
+          context={{
+            routine,
+            token,
+            refreshData,
+            activities,
+            isOwner: routine.creatorId === userData.id,
+          }}
+        />
       </div>
     </>
   );

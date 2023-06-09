@@ -35,7 +35,12 @@ const Activities = () => {
       </div>
       <div className='grid grid-flow-row grid-cols-4 gap-4'>
         {activitiesFiltered.map(activity => (
-          <Activity key={activity.id} activity={activity} />
+          <div
+            key={activity.id}
+            className='max-h-96 border-[16px] border-teal-500 p-4 shadow-[8px_8px_0_0_rgb(0,0,0,1)]'
+          >
+            <Activity activity={activity} />
+          </div>
         ))}
       </div>
     </>

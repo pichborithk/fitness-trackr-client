@@ -6,6 +6,7 @@ import './index.css';
 import Root from './Root';
 import {
   Activities,
+  AddRoutineActivity,
   EditRoutine,
   ErrorPage,
   Home,
@@ -19,7 +20,7 @@ import {
   Routines,
   ViewRoutine,
 } from './routes';
-import AddActivities from './routes/AddActivities';
+import EditRoutineActivity from './routes/EditRoutineActivity';
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,11 @@ const router = createBrowserRouter([
             children: [
               { index: true, element: <RoutineActivities /> },
               { path: 'edit', element: <EditRoutine /> },
-              { path: 'add_activities', element: <AddActivities /> },
+              { path: 'add_activity', element: <AddRoutineActivity /> },
+              {
+                path: ':routineActivityId',
+                element: <EditRoutineActivity />,
+              },
             ],
           },
           { path: 'create', element: <NewRoutine /> },

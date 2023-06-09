@@ -1,23 +1,26 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { Input, SelectInput } from '../components';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { NewRoutineData, ViewRoutineContext } from '../types/types';
-import { CheckInput, Input } from '../components';
-import { updateRoutine } from '../lib/fetchRoutines';
+import { NewRoutineActivityData, ViewRoutineContext } from '../types/types';
+import { createRoutineActivity } from '../lib/fetchRoutines';
 
-const EditRoutine = () => {
-  const { routine, token, isOwner, refreshData } =
+const AddRoutineActivity = () => {
+  const { isOwner, activities, routine, refreshData } =
     useOutletContext<ViewRoutineContext>();
   const navigate = useNavigate();
 
-  const [name, setName] = useState(routine.name);
-  const [goal, setGoal] = useState(routine.goal);
-  const publicRef = useRef<HTMLInputElement>(null);
+  const [count, setCount] = useState('');
+  const [duration, setDuration] = useState('');
+  const [activityId, setActivityId] = useState('');
 
-  function handleSubmit(id: number, token: string, data: NewRoutineData) {
+  function handleSubmit(id: number, data: NewRoutineActivityData) {
     return async function (event: FormEvent<HTMLFormElement>) {
       event.preventDefault();
       try {
-        const result = await updateRoutine(id, token, data);
+        if (!data.activityId) {
+          throw new Error('Must select activity');
+        }
+        const result = await createRoutineActivity(id, data);
         console.log(result);
         if (result.id) {
           await refreshData();
@@ -25,16 +28,18 @@ const EditRoutine = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setName('');
-        setGoal('');
+        setCount('');
+        setDuration('');
+        setActivityId('');
         navigate(`/routines/${routine.id}`);
       }
     };
   }
 
   function handleCancel() {
-    setName('');
-    setGoal('');
+    setCount('');
+    setDuration('');
+    setActivityId('');
     navigate(`/routines/${routine.id}`);
   }
 
@@ -46,40 +51,38 @@ const EditRoutine = () => {
 
   return (
     <form
-      onSubmit={handleSubmit(routine.id, token, {
-        name,
-        goal,
-        isPublic: publicRef.current?.checked || false,
+      onSubmit={handleSubmit(routine.id, {
+        count: Number(count),
+        duration: Number(duration),
+        activityId: Number(activityId),
       })}
       className='relative flex w-1/2 flex-col items-center justify-evenly gap-8 rounded-2xl border border-teal-500 px-20 py-12 text-xl text-slate-500'
     >
-      <h1 className='text-4xl font-bold text-teal-500'>Edit Your Routine</h1>
-      <Input
-        value={name}
-        setValue={setName}
-        name='routine-name'
-        type='text'
-        required={true}
-        label='Name*'
+      <h1 className='text-4xl font-bold text-teal-500'>Add Routine Activity</h1>
+      <SelectInput
+        activities={activities.sort()}
+        setValue={setActivityId}
+        routine={routine}
       />
       <Input
-        value={goal}
-        setValue={setGoal}
-        name='routine-goal'
+        value={count}
+        setValue={setCount}
+        name='routine-activity-count'
         type='text'
         required={true}
-        label='Goal*'
+        label='Count*'
       />
-      <CheckInput
-        reference={publicRef}
-        checked={routine.isPublic}
-        name='is-public'
-        label='Public ?'
-        type='checkbox'
+      <Input
+        value={duration}
+        setValue={setDuration}
+        name='routine-activity-duration'
+        type='text'
+        required={true}
+        label='Duration*'
       />
       <div className='w-full'>
         <button className='mb-2 w-full rounded-lg border-2 border-teal-500 px-4 py-2 font-bold text-teal-500 hover:border-teal-500 hover:bg-teal-500 hover:text-white'>
-          Save
+          Add
         </button>
         <button
           type='button'
@@ -93,4 +96,4 @@ const EditRoutine = () => {
   );
 };
 
-export default EditRoutine;
+export default AddRoutineActivity;
