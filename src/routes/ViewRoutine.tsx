@@ -1,6 +1,13 @@
-import { Link, Outlet, useOutletContext, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
 import { RootContext, Routine } from '../types/types';
 import { useEffect, useState } from 'react';
+import { deleteRoutine } from '../lib/fetchRoutines';
 
 const ViewRoutine = () => {
   const { userRoutines, publicRoutines, token, userData, refreshData } =
@@ -8,6 +15,7 @@ const ViewRoutine = () => {
   const [routine, setRoutine] = useState<Routine | null>(null);
 
   const { routineId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const foundRoutine =
@@ -20,6 +28,18 @@ const ViewRoutine = () => {
 
   if (!routine) {
     return <div>Not Found</div>;
+  }
+
+  async function handleDelete(id: number, token: string) {
+    try {
+      const result = await deleteRoutine(id, token);
+      console.log(result);
+      if (result?.success) {
+        navigate('/routines');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -36,6 +56,7 @@ const ViewRoutine = () => {
             {routine.creatorId === userData.id && (
               <div className='flex flex-col items-end justify-between'>
                 <button
+                  onClick={() => handleDelete(Number(routineId), token)}
                   type='button'
                   className='rounded-md border-2 border-black px-2 py-1 text-sm hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'
                 >
