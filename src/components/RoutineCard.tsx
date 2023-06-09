@@ -21,7 +21,12 @@ const RoutineCard = ({ routine }: Props) => {
           <h3 className='text-2xl font-bold text-teal-500'>{routine.name}</h3>
           <h4>{routine.goal}</h4>
           <p className='text-right text-sm text-slate-700'>Create By:</p>
-          <p className='text-right text-2xl font-bold'>{routine.creatorName}</p>
+          <Link
+            to={`/${routine.creatorName}`}
+            className='block text-right text-2xl font-bold'
+          >
+            {routine.creatorName}
+          </Link>
         </div>
         <div className='flex flex-col gap-2 px-6 py-4'>
           {routine.activities.map(activity => (
