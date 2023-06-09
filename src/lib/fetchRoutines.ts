@@ -102,3 +102,12 @@ export async function deleteRoutineActivity(id: number, token: string) {
   });
   return await response.json();
 }
+
+export async function fetchRoutinesByActivity(id: number) {
+  const response = await fetch(`${BASE_URL}/activities/${id}/routines`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return await response.json();
+}
