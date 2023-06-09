@@ -27,3 +27,19 @@ export async function createActivity(
   });
   return await response.json();
 }
+
+export async function updateActivity(
+  id: number,
+  token: string,
+  data: NewActivityData
+) {
+  const response = await fetch(`${BASE_URL}/activities/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  return await response.json();
+}

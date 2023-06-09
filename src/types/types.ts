@@ -19,6 +19,13 @@ export type ViewRoutineContext = {
   activities: Activity[];
 };
 
+export type ViewActivityContext = {
+  activity: Activity;
+  refreshData: () => Promise<void>;
+  userData: UserData;
+  token: string;
+};
+
 export type TokenFetch = {
   message: string;
   token?: string;
@@ -48,8 +55,8 @@ export type Routine = {
 export type RoutineActivity = {
   id: number;
   name: string;
-  count: number;
   description: string;
+  count: number;
   duration: number;
   routineActivityId: number;
   routineId: number;
