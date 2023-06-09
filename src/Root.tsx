@@ -57,6 +57,12 @@ const Root = () => {
     }
   }
 
+  async function refreshData() {
+    await getActivities();
+    await getPublicRoutines();
+    await getUserRoutines(token, userData.username);
+  }
+
   useEffect(() => {
     (async function () {
       await getPublicRoutines();
@@ -93,6 +99,7 @@ const Root = () => {
             setRoute,
             userData,
             userRoutines,
+            refreshData,
           }}
         />
       </div>

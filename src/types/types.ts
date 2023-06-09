@@ -8,10 +8,14 @@ export type RootContext = {
   setRoute: Dispatch<SetStateAction<string>>;
   userData: UserData;
   userRoutines: Routine[];
+  refreshData: () => Promise<void>;
 };
 
 export type ViewRoutineContext = {
   routine: Routine;
+  token: string;
+  userData: UserData;
+  refreshData: () => Promise<void>;
 };
 
 export type TokenFetch = {
