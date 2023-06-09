@@ -4,7 +4,8 @@ import { Activity, SearchInput } from '../components';
 import { useEffect, useState } from 'react';
 
 const Activities = () => {
-  const { activities, userData } = useOutletContext<RootContext>();
+  const { activities, userData, refreshData, token } =
+    useOutletContext<RootContext>();
   const [keyword, setKeyword] = useState('');
   const [activitiesFiltered, setActivitiesFiltered] = useState(activities);
 
@@ -35,12 +36,13 @@ const Activities = () => {
       </div>
       <div className='grid grid-flow-row grid-cols-4 gap-4'>
         {activitiesFiltered.map(activity => (
-          <div
+          <Activity
+            activity={activity}
+            route='activities'
+            refreshData={refreshData}
+            token={token}
             key={activity.id}
-            className='max-h-96 border-[16px] border-teal-500 p-4 shadow-[8px_8px_0_0_rgb(0,0,0,1)]'
-          >
-            <Activity activity={activity} />
-          </div>
+          />
         ))}
       </div>
     </>

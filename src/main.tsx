@@ -7,6 +7,7 @@ import Root from './Root';
 import {
   Activities,
   AddRoutineActivity,
+  EditActivity,
   EditRoutine,
   ErrorPage,
   Home,
@@ -16,8 +17,10 @@ import {
   Pricing,
   Profile,
   Register,
+  RelatedRoutines,
   RoutineActivities,
   Routines,
+  ViewActivity,
   ViewRoutine,
 } from './routes';
 import EditRoutineActivity from './routes/EditRoutineActivity';
@@ -37,6 +40,14 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Activities /> },
           { path: 'create', element: <NewActivity /> },
+          {
+            path: ':activityId',
+            element: <ViewActivity />,
+            children: [
+              { index: true, element: <RelatedRoutines /> },
+              { path: 'edit', element: <EditActivity /> },
+            ],
+          },
         ],
       },
       { path: 'login', element: <Login /> },
