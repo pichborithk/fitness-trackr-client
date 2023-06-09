@@ -1,28 +1,33 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import { CheckInput, Input } from '../components';
-import { NewRoutineData, RootContext } from '../types/types';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { createRoutine } from '../lib/fetchRoutines';
+import { NewRoutineData, ViewRoutineContext } from '../types/types';
+import { CheckInput, Input } from '../components';
+import { updateRoutine } from '../lib/fetchRoutines';
 
-const NewRoutine = () => {
-  const { token, userData } = useOutletContext<RootContext>();
+const EditRoutine = () => {
+  const { routine, token, userData, refreshData } =
+    useOutletContext<ViewRoutineContext>();
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
-  const [goal, setGoal] = useState('');
+  const [name, setName] = useState(routine.name);
+  const [goal, setGoal] = useState(routine.goal);
   const publicRef = useRef<HTMLInputElement>(null);
 
-  function handleSubmit(token: string, data: NewRoutineData) {
+  function handleSubmit(id: number, token: string, data: NewRoutineData) {
     return async function (event: FormEvent<HTMLFormElement>) {
       event.preventDefault();
       try {
-        const result = await createRoutine(token, data);
+        const result = await updateRoutine(id, token, data);
         console.log(result);
+        if (result.id) {
+          await refreshData();
+        }
       } catch (error) {
         console.error(error);
       } finally {
         setName('');
         setGoal('');
+        navigate(`/routines/${routine.id}`);
       }
     };
   }
@@ -30,25 +35,25 @@ const NewRoutine = () => {
   function handleCancel() {
     setName('');
     setGoal('');
-    navigate('/routines');
+    navigate(`/routines/${routine.id}`);
   }
 
   useEffect(() => {
-    if (!userData || !userData.id) {
+    if (!userData || !userData.id || routine.creatorId !== userData.id) {
       return navigate('/routines');
     }
-  }, [userData]);
+  }, [userData, routine]);
 
   return (
     <form
-      onSubmit={handleSubmit(token, {
+      onSubmit={handleSubmit(routine.id, token, {
         name,
         goal,
         isPublic: publicRef.current?.checked || false,
       })}
       className='relative flex w-1/2 flex-col items-center justify-evenly gap-8 rounded-2xl border border-teal-500 px-20 py-12 text-xl text-slate-500'
     >
-      <h1 className='text-4xl font-bold text-teal-500'>Create New Routine</h1>
+      <h1 className='text-4xl font-bold text-teal-500'>Edit Your Routine</h1>
       <Input
         value={name}
         setValue={setName}
@@ -67,14 +72,14 @@ const NewRoutine = () => {
       />
       <CheckInput
         reference={publicRef}
-        checked={false}
+        checked={routine.isPublic}
         name='is-public'
         label='Public ?'
         type='checkbox'
       />
       <div className='w-full'>
         <button className='mb-2 w-full rounded-lg border-2 border-teal-500 px-4 py-2 font-bold text-teal-500 hover:border-teal-500 hover:bg-teal-500 hover:text-white'>
-          Create
+          Save
         </button>
         <button
           type='button'
@@ -88,4 +93,4 @@ const NewRoutine = () => {
   );
 };
 
-export default NewRoutine;
+export default EditRoutine;

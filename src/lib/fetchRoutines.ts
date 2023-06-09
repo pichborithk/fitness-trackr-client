@@ -27,3 +27,19 @@ export async function createRoutine(
   });
   return await response.json();
 }
+
+export async function updateRoutine(
+  id: number,
+  token: string,
+  data: NewRoutineData
+): Promise<Routine> {
+  const response = await fetch(`${BASE_URL}/routines/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  return await response.json();
+}

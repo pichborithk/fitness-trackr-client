@@ -10,4 +10,4 @@ export { default as NewRoutine } from './NewRoutine';
 export { default as NewActivity } from './NewActivity';
 export { default as ViewRoutine } from './ViewRoutine';
 export { default as RoutineActivities } from './RoutineActivities';
-export { default as Edit } from './Edit';
+export { default as EditRoutine } from './EditRoutine';
