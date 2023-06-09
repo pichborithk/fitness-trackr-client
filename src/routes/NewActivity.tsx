@@ -5,7 +5,7 @@ import { NewActivityData, RootContext } from '../types/types';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const NewActivity = () => {
-  const { token, userData } = useOutletContext<RootContext>();
+  const { token, userData, refreshData } = useOutletContext<RootContext>();
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
@@ -17,6 +17,9 @@ const NewActivity = () => {
       try {
         const result = await createActivity(token, data);
         console.log(result);
+        if (result.id) {
+          await refreshData();
+        }
       } catch (error) {
         console.error(error);
       } finally {

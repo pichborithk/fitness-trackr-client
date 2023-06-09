@@ -11,3 +11,4 @@ export { default as NewActivity } from './NewActivity';
 export { default as ViewRoutine } from './ViewRoutine';
 export { default as RoutineActivities } from './RoutineActivities';
 export { default as EditRoutine } from './EditRoutine';
+export { default as AddRoutineActivity } from './AddRoutineActivity';

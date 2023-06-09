@@ -14,8 +14,9 @@ export type RootContext = {
 export type ViewRoutineContext = {
   routine: Routine;
   token: string;
-  userData: UserData;
+  isOwner: boolean;
   refreshData: () => Promise<void>;
+  activities: Activity[];
 };
 
 export type TokenFetch = {
@@ -69,4 +70,10 @@ export type NewRoutineData = {
 export type NewActivityData = {
   name: string;
   description: string;
+};
+
+export type NewRoutineActivityData = {
+  activityId?: number;
+  count: number;
+  duration: number;
 };

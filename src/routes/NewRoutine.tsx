@@ -5,7 +5,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { createRoutine } from '../lib/fetchRoutines';
 
 const NewRoutine = () => {
-  const { token, userData } = useOutletContext<RootContext>();
+  const { token, userData, refreshData } = useOutletContext<RootContext>();
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
@@ -18,6 +18,9 @@ const NewRoutine = () => {
       try {
         const result = await createRoutine(token, data);
         console.log(result);
+        if (result.id) {
+          await refreshData();
+        }
       } catch (error) {
         console.error(error);
       } finally {

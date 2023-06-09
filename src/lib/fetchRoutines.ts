@@ -1,4 +1,8 @@
-import { NewRoutineData, Routine } from '../types/types';
+import {
+  NewRoutineActivityData,
+  NewRoutineData,
+  Routine,
+} from '../types/types';
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 
@@ -49,6 +53,47 @@ export async function deleteRoutine(
   token: string
 ): Promise<Routine & { success: boolean }> {
   const response = await fetch(`${BASE_URL}/routines/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await response.json();
+}
+
+export async function createRoutineActivity(
+  id: number,
+  data: NewRoutineActivityData
+) {
+  const response = await fetch(`${BASE_URL}/routines/${id}/activities`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return await response.json();
+}
+
+export async function updateRoutineActivity(
+  id: number,
+  token: string,
+  data: NewRoutineActivityData
+) {
+  const response = await fetch(`${BASE_URL}/routine_activities/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  return await response.json();
+}
+
+export async function deleteRoutineActivity(id: number, token: string) {
+  const response = await fetch(`${BASE_URL}/routine_activities/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
