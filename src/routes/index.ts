@@ -15,3 +15,4 @@ export { default as AddRoutineActivity } from './AddRoutineActivity';
 export { default as EditActivity } from './EditActivity';
 export { default as ViewActivity } from './ViewActivity';
 export { default as RelatedRoutines } from './RelatedRoutines';
+export { default as UserRoutines } from './UserRoutines';

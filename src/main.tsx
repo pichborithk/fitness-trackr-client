@@ -20,6 +20,7 @@ import {
   RelatedRoutines,
   RoutineActivities,
   Routines,
+  UserRoutines,
   ViewActivity,
   ViewRoutine,
 } from './routes';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: ':username',
+        element: <UserRoutines />,
       },
       {
         path: 'activities',
