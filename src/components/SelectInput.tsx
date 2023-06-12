@@ -12,7 +12,7 @@ const SelectInput = ({ activities, setValue, routine }: Props) => {
 
   return (
     <select
-      className='w-full appearance-none rounded-md border border-solid border-slate-500 px-5 py-2 focus:outline-teal-500'
+      className='w-full appearance-none rounded-md border border-solid border-slate-500 bg-inherit px-5 py-2 focus:outline-primary-500'
       onChange={event => {
         setValue(event.target.value);
       }}

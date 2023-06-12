@@ -21,11 +21,11 @@ const CheckInput = ({ reference, checked, type, name, label }: Props) => {
       />
       <label
         htmlFor={name}
-        className='dark:text-secondary flex-1 cursor-pointer select-none rounded-md  border-2 border-slate-500 px-5 py-2 peer-checked:border-teal-500 peer-checked:text-teal-500'
+        className='flex-1 cursor-pointer select-none rounded-md border-2 border-slate-400 px-5 py-2 peer-checked:border-red-600 peer-checked:text-red-600'
       >
         {label}
       </label>
-      <i className='fa-solid fa-circle-check absolute right-4 top-3 hidden text-red-500 peer-checked:inline'></i>
+      <i className='fa-solid fa-circle-check absolute right-4 top-3 hidden text-primary-600 peer-checked:inline'></i>
     </fieldset>
   );
 };
