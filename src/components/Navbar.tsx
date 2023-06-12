@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 import { UserData } from '../types/types';
+import logo from '../assets/logo.png';
 
 type Props = {
   userData: UserData;
@@ -18,25 +19,55 @@ const Navbar = ({
   setUserData,
 }: Props) => {
   return (
-    <nav className='flex items-center justify-between py-4 text-3xl'>
-      <h1>Logo</h1>
-      <div className='flex justify-between gap-12'>
-        <Link to='/' onClick={() => setRoute('home')}>
+    <nav className='flex items-center justify-between text-2xl font-bold'>
+      <img src={logo} alt='logo' className='max-h-20' />
+      <div className='flex justify-between gap-2'>
+        <Link
+          to='/'
+          onClick={() => setRoute('home')}
+          className={`border-primary-500 px-4 py-2  hover:border-b-4 ${
+            route === 'home' ? 'border-b-4 uppercase text-primary-500' : ''
+          }`}
+        >
           Home
         </Link>
-        {!userData.username && (
-          <Link to='/pricing' onClick={() => setRoute('pricing')}>
-            Pricing
-          </Link>
-        )}
-        <Link to='/routines' onClick={() => setRoute('routines')}>
+        <Link
+          to='/pricing'
+          onClick={() => setRoute('pricing')}
+          className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+            route === 'pricing' ? 'border-b-4 uppercase text-primary-500' : ''
+          }`}
+        >
+          Pricing
+        </Link>
+        <Link
+          to='/routines'
+          onClick={() => setRoute('routines')}
+          className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+            route === 'routines' ? 'border-b-4 uppercase text-primary-500' : ''
+          }`}
+        >
           Routines
         </Link>
-        <Link to='/activities' onClick={() => setRoute('activities')}>
+        <Link
+          to='/activities'
+          onClick={() => setRoute('activities')}
+          className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+            route === 'activities'
+              ? 'border-b-4 uppercase text-primary-500'
+              : ''
+          }`}
+        >
           Activities
         </Link>
         {userData.username && (
-          <Link to='/profile' onClick={() => setRoute('profile')}>
+          <Link
+            to='/profile'
+            onClick={() => setRoute('profile')}
+            className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+              route === 'profile' ? 'border-b-4 uppercase text-primary-500' : ''
+            }`}
+          >
             Profile
           </Link>
         )}
@@ -50,17 +81,26 @@ const Navbar = ({
             setToken('');
             setUserData({ id: 0, username: '' });
           }}
+          className='cursor-pointer rounded-lg border-2 border-primary-100 bg-primary-100 px-4 py-2 text-xl text-primary-600 hover:border-primary-600 hover:bg-inherit'
         >
           Sign Out
         </Link>
       )}
       {!userData.username && route === 'register' && (
-        <Link to='/login' onClick={() => setRoute('login')}>
+        <Link
+          to='/login'
+          onClick={() => setRoute('login')}
+          className='cursor-pointer rounded-lg border-2 border-primary-500 px-4 py-2 text-xl text-primary-500 hover:bg-primary-600 hover:text-primary-100'
+        >
           Sign In
         </Link>
       )}
       {!userData.username && route !== 'register' && (
-        <Link to='/register' onClick={() => setRoute('register')}>
+        <Link
+          to='/register'
+          onClick={() => setRoute('register')}
+          className='cursor-pointer rounded-lg border-2 border-slate-900 bg-primary-600 px-4 py-2 text-xl text-primary-100 hover:border-primary-600'
+        >
           Join Us
         </Link>
       )}
