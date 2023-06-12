@@ -56,9 +56,11 @@ const AddRoutineActivity = () => {
         duration: Number(duration),
         activityId: Number(activityId),
       })}
-      className='relative flex w-1/2 flex-col items-center justify-evenly gap-8 rounded-2xl border border-teal-500 px-20 py-12 text-xl text-slate-500'
+      className='relative flex w-1/2 flex-col items-center justify-evenly gap-8 rounded-2xl border px-20 py-12 text-xl text-primary-100 shadow-full_white'
     >
-      <h1 className='text-4xl font-bold text-teal-500'>Add Routine Activity</h1>
+      <h1 className='text-4xl font-bold text-primary-500'>
+        Add Routine Activity
+      </h1>
       <SelectInput
         activities={activities.sort()}
         setValue={setActivityId}
@@ -81,13 +83,13 @@ const AddRoutineActivity = () => {
         label='Duration*'
       />
       <div className='w-full'>
-        <button className='mb-2 w-full rounded-lg border-2 border-teal-500 px-4 py-2 font-bold text-teal-500 hover:border-teal-500 hover:bg-teal-500 hover:text-white'>
+        <button className='mb-2 w-full rounded-lg border-2 border-primary-600 px-4 py-2 font-bold text-primary-500 hover:bg-primary-600 hover:text-white'>
           Add
         </button>
         <button
           type='button'
           onClick={() => handleCancel()}
-          className='mb-2 w-full rounded-lg border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black'
+          className='mb-2 w-full rounded-lg border-2 border-primary-100 px-4 py-2 font-bold text-primary-100 hover:bg-primary-100 hover:text-primary-600'
         >
           Cancel
         </button>

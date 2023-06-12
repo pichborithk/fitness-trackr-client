@@ -35,7 +35,7 @@ const Routines = () => {
       </h1>
       <div className='flex w-full gap-2 px-20'>
         <SearchInput value={keyword} setValue={setKeyword} />
-        {userData.id && (
+        {userData.username && (
           <Link
             to='/routines/create'
             className='border-2 border-primary-600 bg-primary-600 px-4 py-2 font-bold text-primary-100 hover:border-primary-700 hover:bg-primary-700'

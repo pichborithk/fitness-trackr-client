@@ -43,7 +43,7 @@ const RoutineCard = ({ routine, route }: Props) => {
         </div>
         <Link
           to={`/routines/${routine.id}`}
-          className='absolute bottom-4 right-6 rounded-md border border-primary-500 p-2 text-primary-600 hover:bg-primary-600 hover:text-primary-100'
+          className='absolute bottom-4 right-6 rounded-md border border-primary-500 p-2 font-semibold text-primary-500 hover:bg-primary-600 hover:text-primary-100'
         >
           See more...
         </Link>

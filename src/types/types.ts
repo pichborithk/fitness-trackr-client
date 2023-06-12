@@ -25,6 +25,7 @@ export type ViewActivityContext = {
   refreshData: () => Promise<void>;
   userData: UserData;
   token: string;
+  route: string;
 };
 
 export type TokenFetch = {

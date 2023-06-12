@@ -26,13 +26,15 @@ const Activities = () => {
 
   return (
     <>
-      <h1 className='text-4xl font-bold'>Activities</h1>
-      <div className='flex w-full'>
+      <h1 className='border-b-8 border-t-8 px-8 py-2 text-center text-4xl font-bold'>
+        Activities
+      </h1>
+      <div className='flex w-full gap-2'>
         <SearchInput value={keyword} setValue={setKeyword} />
-        {userData.id && (
+        {userData.username && (
           <Link
             to='/activities/create'
-            className='border-2 border-teal-500 px-4 py-2 font-bold text-teal-500 hover:bg-teal-500 hover:text-white'
+            className='border-2 border-primary-600 bg-primary-600 px-4 py-2 font-bold text-primary-100 hover:border-primary-700 hover:bg-primary-700'
           >
             Create New Activity
           </Link>

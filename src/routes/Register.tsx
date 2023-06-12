@@ -16,6 +16,7 @@ const Register = () => {
 
   useEffect(() => {
     setNotification('');
+    setRoute('register');
     if (token) {
       localStorage.setItem('TOKEN', token);
       navigate('/');
@@ -59,9 +60,9 @@ const Register = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='relative flex w-1/2 flex-col items-center justify-evenly gap-8 bg-teal-500 px-20 py-12 text-xl text-white shadow-md'
+      className='relative flex w-1/2 flex-col items-center justify-evenly gap-8 rounded-2xl border px-20 py-12 text-xl text-primary-100 shadow-full_white'
     >
-      <h1 className='text-4xl'>Create An Account</h1>
+      <h1 className='text-4xl font-bold text-primary-500'>Create An Account</h1>
       <fieldset className='flex w-full flex-col'>
         <label htmlFor='username' className='px-4 py-2'>
           Username
@@ -74,7 +75,7 @@ const Register = () => {
           value={username}
           onChange={event => setUsername(event.target.value)}
           required
-          className='border-secondary rounded-md border border-solid px-4 py-2 text-slate-700 focus:outline-teal-500'
+          className='border-secondary rounded-md border border-solid px-4 py-2 text-slate-700 focus:outline-primary-500'
         />
       </fieldset>
       <fieldset className='relative flex w-full flex-col'>
@@ -88,10 +89,10 @@ const Register = () => {
           value={password}
           onChange={event => setPassword(event.target.value)}
           required
-          className='rounded-md border border-solid border-white px-4 py-2 text-slate-700 focus:outline-teal-500'
+          className='rounded-md border border-solid border-white px-4 py-2 text-slate-700 focus:outline-primary-500'
         />
         <i
-          className={`fa-solid absolute bottom-3 right-4 text-teal-500  ${
+          className={`fa-solid absolute bottom-3 right-4 text-primary-600  ${
             hidePassword ? 'fa-eye-slash' : 'fa-eye'
           } ${!(password || confirmPassword) && 'hidden'}`}
           onClick={() => setHidePassword(!hidePassword)}
@@ -108,22 +109,22 @@ const Register = () => {
           value={confirmPassword}
           onChange={event => setConfirmPassword(event.target.value)}
           required
-          className='rounded-md border border-solid border-white px-4 py-2 text-slate-700 focus:outline-teal-500'
+          className='rounded-md border border-solid border-white px-4 py-2 text-slate-700 focus:outline-primary-500'
         />
         <i
-          className={`fa-solid absolute bottom-3 right-4 text-teal-500  ${
+          className={`fa-solid absolute bottom-3 right-4 text-primary-600  ${
             hidePassword ? 'fa-eye-slash' : 'fa-eye'
           } ${!(password || confirmPassword) && 'hidden'}`}
           onClick={() => setHidePassword(!hidePassword)}
         ></i>
       </fieldset>
       <div className='mt-2 w-full text-center'>
-        <button className='mb-2 w-full rounded-lg border-2 border-white px-4 py-2 hover:bg-white hover:text-teal-500'>
+        <button className='mb-2 w-full rounded-lg border-primary-600 bg-primary-600 px-4 py-2 font-semibold hover:bg-white hover:text-primary-500'>
           Create Account
         </button>
-        <p>
+        <p className='text-base'>
           Already Have An Account?{' '}
-          <Link to='/login' className='underline'>
+          <Link to='/login' className='underline hover:text-primary-500'>
             Sign in
           </Link>
         </p>
