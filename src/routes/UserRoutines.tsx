@@ -5,7 +5,7 @@ import { RoutineCard } from '../components';
 
 const UserRoutines = () => {
   const { username } = useParams();
-  const { publicRoutines } = useOutletContext<RootContext>();
+  const { publicRoutines, setRoute, route } = useOutletContext<RootContext>();
 
   const [routines, setRoutines] = useState<Routine[]>([]);
 
@@ -17,12 +17,16 @@ const UserRoutines = () => {
     setRoutines(userRoutines);
   }, [username, publicRoutines]);
 
+  useEffect(() => {
+    setRoute('profile');
+  }, []);
+
   return (
     <>
       <h1 className='text-4xl font-bold text-teal-500'>{username}</h1>
       <div className='flex w-full flex-col gap-6 px-8'>
         {routines.map(routine => (
-          <RoutineCard routine={routine} key={routine.id} />
+          <RoutineCard routine={routine} key={routine.id} route={route} />
         ))}
       </div>
     </>

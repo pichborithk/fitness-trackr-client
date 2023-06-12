@@ -100,6 +100,7 @@ const Root = () => {
             userData,
             userRoutines,
             refreshData,
+            route,
           }}
         />
       </div>

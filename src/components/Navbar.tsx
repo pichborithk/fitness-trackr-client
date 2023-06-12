@@ -19,7 +19,7 @@ const Navbar = ({
   setUserData,
 }: Props) => {
   return (
-    <nav className='flex items-center justify-between text-2xl font-bold'>
+    <nav className='mb-4 flex items-center justify-between text-2xl font-bold'>
       <img src={logo} alt='logo' className='max-h-20' />
       <div className='flex justify-between gap-2'>
         <Link
@@ -34,7 +34,7 @@ const Navbar = ({
         <Link
           to='/pricing'
           onClick={() => setRoute('pricing')}
-          className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+          className={`border-primary-500 px-4 py-2 hover:border-b-4 ${
             route === 'pricing' ? 'border-b-4 uppercase text-primary-500' : ''
           }`}
         >
@@ -43,7 +43,7 @@ const Navbar = ({
         <Link
           to='/routines'
           onClick={() => setRoute('routines')}
-          className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+          className={`border-primary-500 px-4 py-2 hover:border-b-4 ${
             route === 'routines' ? 'border-b-4 uppercase text-primary-500' : ''
           }`}
         >
@@ -52,7 +52,7 @@ const Navbar = ({
         <Link
           to='/activities'
           onClick={() => setRoute('activities')}
-          className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+          className={`border-primary-500 px-4 py-2 hover:border-b-4 ${
             route === 'activities'
               ? 'border-b-4 uppercase text-primary-500'
               : ''
@@ -64,7 +64,7 @@ const Navbar = ({
           <Link
             to='/profile'
             onClick={() => setRoute('profile')}
-            className={`cursor-pointer border-primary-500 px-4 py-2 hover:border-b-4 ${
+            className={`border-primary-500 px-4 py-2 hover:border-b-4 ${
               route === 'profile' ? 'border-b-4 uppercase text-primary-500' : ''
             }`}
           >
@@ -81,7 +81,7 @@ const Navbar = ({
             setToken('');
             setUserData({ id: 0, username: '' });
           }}
-          className='cursor-pointer rounded-lg border-2 border-primary-100 bg-primary-100 px-4 py-2 text-xl text-primary-600 hover:border-primary-600 hover:bg-inherit'
+          className='rounded-md border-2 border-primary-100 bg-primary-100 px-4 py-2 text-xl text-primary-600 hover:border-primary-600 hover:bg-inherit'
         >
           Sign Out
         </Link>
@@ -90,7 +90,7 @@ const Navbar = ({
         <Link
           to='/login'
           onClick={() => setRoute('login')}
-          className='cursor-pointer rounded-lg border-2 border-primary-500 px-4 py-2 text-xl text-primary-500 hover:bg-primary-600 hover:text-primary-100'
+          className='rounded-md border-2 border-primary-500 px-4 py-2 text-xl text-primary-500 hover:bg-primary-600 hover:text-primary-100'
         >
           Sign In
         </Link>
@@ -99,7 +99,7 @@ const Navbar = ({
         <Link
           to='/register'
           onClick={() => setRoute('register')}
-          className='cursor-pointer rounded-lg border-2 border-slate-900 bg-primary-600 px-4 py-2 text-xl text-primary-100 hover:border-primary-600'
+          className='rounded-md border-2 border-slate-900 bg-primary-600 px-4 py-2 text-xl text-primary-100 hover:border-primary-600'
         >
           Join Us
         </Link>
