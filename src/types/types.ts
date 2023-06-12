@@ -9,6 +9,7 @@ export type RootContext = {
   userData: UserData;
   userRoutines: Routine[];
   refreshData: () => Promise<void>;
+  route: string;
 };
 
 export type ViewRoutineContext = {

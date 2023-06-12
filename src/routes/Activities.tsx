@@ -4,7 +4,7 @@ import { Activity, SearchInput } from '../components';
 import { useEffect, useState } from 'react';
 
 const Activities = () => {
-  const { activities, userData, refreshData, token } =
+  const { activities, userData, refreshData, token, setRoute } =
     useOutletContext<RootContext>();
   const [keyword, setKeyword] = useState('');
   const [activitiesFiltered, setActivitiesFiltered] = useState(activities);
@@ -19,6 +19,10 @@ const Activities = () => {
 
     setActivitiesFiltered(filteredActivities);
   }, [keyword, activities]);
+
+  useEffect(() => {
+    setRoute('activities');
+  }, []);
 
   return (
     <>

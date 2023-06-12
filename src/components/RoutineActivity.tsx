@@ -7,9 +7,13 @@ type Props = {
 const RoutineActivity = ({ activity }: Props) => {
   return (
     <div>
-      <h3 className='text-xl font-bold'>{activity.name}</h3>
-      <p>Count: {activity.description} reps</p>
-      <p>Durations: {activity.duration} minutes</p>
+      <h3 className='text-xl font-bold text-primary-100'>{activity.name}</h3>
+      <p className='font-lora text-slate-400'>
+        Count: {activity.description} reps
+      </p>
+      <p className='font-lora text-slate-400'>
+        Durations: {activity.duration} minutes
+      </p>
     </div>
   );
 };
