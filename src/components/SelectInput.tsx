@@ -20,11 +20,12 @@ const SelectInput = ({ activities, setValue, routine }: Props) => {
       <option value=''>Select Activity*</option>;
       {activities.map(activity => {
         if (addedActivities.includes(activity.id)) {
-          return (
-            <option key={activity.id} value=''>
-              {activity.name} (ADDED)
-            </option>
-          );
+          // return (
+          //   <option key={activity.id} value=''>
+          //     {activity.name} (ADDED)
+          //   </option>
+          // );
+          return;
         } else {
           return (
             <option key={activity.id} value={activity.id}>
