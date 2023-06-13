@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Navbar, ScrollToTop } from './components';
+import { Footer, Navbar, ScrollToTop } from './components';
 import { useEffect, useState } from 'react';
 import { Activity, Routine, UserData } from './types/types';
 import { fetchUserData, fetchUserRoutines } from './lib/fetchUsers';
@@ -90,7 +90,7 @@ const Root = () => {
         setToken={setToken}
         setUserData={setUserData}
       />
-      <div className='mb-8 flex min-h-screen flex-col items-center gap-4'>
+      <div className='mx-auto mb-8 flex min-h-screen max-w-7xl flex-col items-center gap-4 px-2'>
         <Outlet
           context={{
             token,
@@ -105,6 +105,7 @@ const Root = () => {
           }}
         />
       </div>
+      <Footer />
     </>
   );
 };
