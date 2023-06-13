@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Navbar } from './components';
+import { Navbar, ScrollToTop } from './components';
 import { useEffect, useState } from 'react';
 import { Activity, Routine, UserData } from './types/types';
 import { fetchUserData, fetchUserRoutines } from './lib/fetchUsers';
@@ -82,6 +82,7 @@ const Root = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar
         route={route}
         userData={userData}
