@@ -27,9 +27,9 @@ const Activities = () => {
   return (
     <>
       <h1 className='border-b-8 border-t-8 px-8 py-2 text-center text-4xl font-bold'>
-        Activities
+        ACTIVITIES
       </h1>
-      <div className='flex w-full gap-2'>
+      <div className='flex w-full gap-2 px-20'>
         <SearchInput value={keyword} setValue={setKeyword} />
         {userData.username && (
           <Link
@@ -40,7 +40,7 @@ const Activities = () => {
           </Link>
         )}
       </div>
-      <div className='grid grid-flow-row grid-cols-4 gap-4'>
+      <div className='grid grid-flow-row grid-cols-4 gap-4 px-20'>
         {activitiesFiltered.map(activity => (
           <Activity
             activity={activity}
