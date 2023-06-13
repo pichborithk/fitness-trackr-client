@@ -19,7 +19,7 @@ const Navbar = ({
   setUserData,
 }: Props) => {
   return (
-    <nav className='mb-4 flex items-center justify-between text-2xl font-bold'>
+    <nav className='mb-4 flex items-center justify-between px-2 text-2xl font-bold'>
       <img src={logo} alt='logo' className='max-h-20' />
       <div className='flex justify-between gap-2'>
         <Link
