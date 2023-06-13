@@ -14,8 +14,8 @@ const Pricing = () => {
       <h1 className='mb-4 border-b-8 border-t-8 px-8 py-2 text-center text-4xl font-bold'>
         PRICING
       </h1>
-      <div className='flex w-full gap-6 px-20'>
-        <div className='flex flex-1 flex-col justify-between overflow-hidden rounded-lg text-xl shadow-full_white'>
+      <div className='flex w-full gap-8 px-20'>
+        <div className='flex flex-1 flex-col justify-between gap-8 overflow-hidden rounded-lg text-xl shadow-full_white'>
           <div>
             <h3 className='bg-slate-500 p-4 text-center text-3xl font-bold'>
               Starter
@@ -37,10 +37,10 @@ const Pricing = () => {
             </button>
           </div>
         </div>
-        <div className='flex flex-1 flex-col justify-between overflow-hidden rounded-lg text-xl shadow-full_white'>
+        <div className='flex flex-1 flex-col justify-between gap-8 overflow-hidden rounded-lg text-xl shadow-full_white'>
           <div>
             <h3 className='bg-primary-600 p-4 text-center text-3xl font-bold'>
-              Starter
+              Professional
             </h3>
             <div className='px-8 py-4 font-lora'>
               <h3 className='text-center text-3xl font-bold'>
@@ -63,10 +63,10 @@ const Pricing = () => {
             </button>
           </div>
         </div>
-        <div className='flex flex-1 flex-col justify-between overflow-hidden rounded-lg text-xl shadow-full_white'>
+        <div className='flex flex-1 flex-col justify-between gap-8 overflow-hidden rounded-lg text-xl shadow-full_white'>
           <div>
             <h3 className='bg-yellow-600 p-4 text-center text-3xl font-bold'>
-              Starter
+              Exclusive
             </h3>
             <div className='px-8 py-4 font-lora'>
               <h3 className='text-center text-3xl font-bold'>
