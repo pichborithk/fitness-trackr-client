@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 import { UserData } from '../types/types';
 import logo from '../assets/logo.png';
+import { toast } from 'react-hot-toast';
 
 type Props = {
   userData: UserData;
@@ -18,6 +19,14 @@ const Navbar = ({
   setToken,
   setUserData,
 }: Props) => {
+  function handleSignOut() {
+    localStorage.clear();
+    setRoute('home');
+    setToken('');
+    setUserData({ id: 0, username: '' });
+    toast.success('Logged Out');
+  }
+
   return (
     <nav className='text-2xl font-bold'>
       <div className='mx-auto mb-4 flex max-w-7xl items-center justify-between px-2'>
@@ -80,12 +89,7 @@ const Navbar = ({
         {userData.username && (
           <Link
             to='/'
-            onClick={() => {
-              localStorage.clear();
-              setRoute('home');
-              setToken('');
-              setUserData({ id: 0, username: '' });
-            }}
+            onClick={handleSignOut}
             className='rounded-md border-2 border-primary-100 bg-primary-100 px-4 py-2 text-xl text-primary-600 hover:border-primary-600 hover:bg-inherit'
           >
             Sign Out

@@ -3,6 +3,7 @@ import { NewActivityData, ViewActivityContext } from '../types/types';
 import { FormEvent, useEffect, useState } from 'react';
 import { Input } from '../components';
 import { updateActivity } from '../lib/fetchActivities';
+import { toast } from 'react-hot-toast';
 
 const EditActivity = () => {
   const { activity, refreshData, userData, token } =
@@ -18,8 +19,13 @@ const EditActivity = () => {
       try {
         const result = await updateActivity(id, token, data);
         console.log(result);
+        if (result.error) {
+          toast.error(result.message);
+        }
+
         if (result.id) {
           await refreshData();
+          toast.success('Successful updated activity');
         }
       } catch (error) {
         console.error(error);

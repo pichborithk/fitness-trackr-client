@@ -1,4 +1,4 @@
-import { Activity, NewActivityData } from '../types/types';
+import { Activity, ErrorFetch, NewActivityData } from '../types/types';
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 
@@ -16,7 +16,7 @@ export async function fetchActivities(): Promise<Activity[]> {
 export async function createActivity(
   token: string,
   data: NewActivityData
-): Promise<Activity> {
+): Promise<Activity & ErrorFetch> {
   const response = await fetch(`${BASE_URL}/activities`, {
     method: 'POST',
     headers: {

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Activity } from '../types/types';
 import { deleteRoutineActivity } from '../lib/fetchRoutines';
+import { toast } from 'react-hot-toast';
 
 type Props = {
   token: string;
@@ -20,8 +21,13 @@ const Activity = ({ activity, isOwner, route, refreshData, token }: Props) => {
     try {
       const result = await deleteRoutineActivity(id, token);
       console.log(result);
+      if (!result?.success) {
+        toast.error('Fail to delete activity from routine');
+      }
+
       if (result?.success) {
         await refreshData();
+        toast.success('Successful deleted activity from routine');
       }
     } catch (error) {
       console.error(error);

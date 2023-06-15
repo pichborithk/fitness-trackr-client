@@ -2,6 +2,7 @@ import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import { RootContext } from '../types/types';
 import { FormEvent, useEffect, useState } from 'react';
 import { userLogin } from '../lib/fetchUsers';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
   const { token, setToken, setRoute } = useOutletContext<RootContext>();
@@ -10,10 +11,8 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
-  const [notification, setNotification] = useState('');
 
   useEffect(() => {
-    setNotification('');
     if (token) {
       localStorage.setItem('TOKEN', token);
       setRoute('home');
@@ -32,7 +31,7 @@ const Login = () => {
     try {
       const result = await userLogin(username, password);
       if (result.error) {
-        setNotification(result.message);
+        toast.error(result.message);
         return;
       }
 
@@ -41,6 +40,7 @@ const Login = () => {
         localStorage.setItem('TOKEN', result.token);
         setRoute('home');
         navigate('/');
+        toast.success('Logged In');
       }
     } catch (error) {
       console.error(error);
@@ -112,9 +112,6 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      <span className='absolute bottom-4 text-base text-white'>
-        {notification}
-      </span>
     </form>
   );
 };

@@ -3,6 +3,7 @@ import { Input } from '../components';
 import { createActivity } from '../lib/fetchActivities';
 import { NewActivityData, RootContext } from '../types/types';
 import { useNavigate, useOutletContext } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const NewActivity = () => {
   const { token, userData, refreshData } = useOutletContext<RootContext>();
@@ -17,8 +18,14 @@ const NewActivity = () => {
       try {
         const result = await createActivity(token, data);
         console.log(result);
+        if (result.error) {
+          toast.error(result.message);
+        }
+
         if (result.id) {
           await refreshData();
+          toast.success('Successful create new activity');
+          navigate('/activities');
         }
       } catch (error) {
         console.error(error);

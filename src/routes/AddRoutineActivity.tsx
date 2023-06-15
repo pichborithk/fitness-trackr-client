@@ -3,6 +3,7 @@ import { Input, SelectInput } from '../components';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { NewRoutineActivityData, ViewRoutineContext } from '../types/types';
 import { createRoutineActivity } from '../lib/fetchRoutines';
+import { toast } from 'react-hot-toast';
 
 const AddRoutineActivity = () => {
   const { isOwner, activities, routine, refreshData } =
@@ -22,8 +23,13 @@ const AddRoutineActivity = () => {
         }
         const result = await createRoutineActivity(id, data);
         console.log(result);
+        if (result.error) {
+          toast.error(result.message);
+        }
+
         if (result.id) {
           await refreshData();
+          toast.success('Successful add activity to routine');
         }
       } catch (error) {
         console.error(error);

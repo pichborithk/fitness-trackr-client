@@ -7,6 +7,7 @@ import {
 import { FormEvent, useEffect, useState } from 'react';
 import { Input } from '../components';
 import { updateRoutineActivity } from '../lib/fetchRoutines';
+import { toast } from 'react-hot-toast';
 
 const EditRoutineActivity = () => {
   const { routine, token, isOwner, refreshData } =
@@ -49,8 +50,13 @@ const EditRoutineActivity = () => {
       try {
         const result = await updateRoutineActivity(id, token, data);
         console.log(result);
+        if (result.error) {
+          toast.error(result.message);
+        }
+
         if (result.id) {
           await refreshData();
+          toast.success('Successful updated routine');
         }
       } catch (error) {
         console.error(error);
