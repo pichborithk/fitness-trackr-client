@@ -39,6 +39,12 @@ export type TokenFetch = {
   name?: string;
 };
 
+export type ErrorFetch = {
+  error: string;
+  message: string;
+  name: string;
+};
+
 export type UserData = {
   id: number;
   username: string;

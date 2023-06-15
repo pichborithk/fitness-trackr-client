@@ -40,6 +40,10 @@ const router = createBrowserRouter([
         path: ':username',
         element: <UserRoutines />,
       },
+      { path: 'login', element: <Login /> },
+      { path: 'pricing', element: <Pricing /> },
+      { path: 'profile', element: <Profile /> },
+      { path: 'register', element: <Register /> },
       {
         path: 'activities',
         children: [
@@ -55,14 +59,11 @@ const router = createBrowserRouter([
           },
         ],
       },
-      { path: 'login', element: <Login /> },
-      { path: 'pricing', element: <Pricing /> },
-      { path: 'profile', element: <Profile /> },
-      { path: 'register', element: <Register /> },
       {
         path: 'routines',
         children: [
           { index: true, element: <Routines /> },
+          { path: 'create', element: <NewRoutine /> },
           {
             path: ':routineId',
             element: <ViewRoutine />,
@@ -76,7 +77,6 @@ const router = createBrowserRouter([
               },
             ],
           },
-          { path: 'create', element: <NewRoutine /> },
         ],
       },
     ],

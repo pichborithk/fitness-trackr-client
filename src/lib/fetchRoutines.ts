@@ -1,4 +1,5 @@
 import {
+  ErrorFetch,
   NewRoutineActivityData,
   NewRoutineData,
   Routine,
@@ -20,7 +21,7 @@ export async function fetchPublicRoutines(): Promise<Routine[]> {
 export async function createRoutine(
   token: string,
   data: NewRoutineData
-): Promise<Routine> {
+): Promise<Routine & ErrorFetch> {
   const response = await fetch(`${BASE_URL}/routines`, {
     method: 'POST',
     headers: {
@@ -36,7 +37,7 @@ export async function updateRoutine(
   id: number,
   token: string,
   data: NewRoutineData
-): Promise<Routine> {
+): Promise<Routine & ErrorFetch> {
   const response = await fetch(`${BASE_URL}/routines/${id}`, {
     method: 'PATCH',
     headers: {

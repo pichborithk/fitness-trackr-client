@@ -3,6 +3,7 @@ import { CheckInput, Input } from '../components';
 import { NewRoutineData, RootContext } from '../types/types';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { createRoutine } from '../lib/fetchRoutines';
+import { toast } from 'react-hot-toast';
 
 const NewRoutine = () => {
   const { token, userData, refreshData } = useOutletContext<RootContext>();
@@ -18,8 +19,15 @@ const NewRoutine = () => {
       try {
         const result = await createRoutine(token, data);
         console.log(result);
+
+        if (result.error) {
+          toast.error(result.message);
+        }
+
         if (result.id) {
           await refreshData();
+          toast.success('Successful create new routine');
+          navigate('/routines');
         }
       } catch (error) {
         console.error(error);

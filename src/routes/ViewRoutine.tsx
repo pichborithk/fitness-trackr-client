@@ -8,6 +8,7 @@ import {
 import { RootContext, Routine } from '../types/types';
 import { useEffect, useState } from 'react';
 import { deleteRoutine } from '../lib/fetchRoutines';
+import { toast } from 'react-hot-toast';
 
 const ViewRoutine = () => {
   const {
@@ -47,7 +48,12 @@ const ViewRoutine = () => {
       console.log(result);
       if (result?.success) {
         await refreshData();
+        toast.success('Successful deleted routine');
         navigate('/routines');
+      }
+
+      if (!result?.success) {
+        toast.error('Fail to delete routine');
       }
     } catch (error) {
       console.error(error);

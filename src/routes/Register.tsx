@@ -3,6 +3,7 @@ import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 
 import { RootContext } from '../types/types';
 import { registerUser } from '../lib/fetchUsers';
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
   const { token, setToken, setRoute } = useOutletContext<RootContext>();
@@ -12,10 +13,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
-  const [notification, setNotification] = useState('');
 
   useEffect(() => {
-    setNotification('');
     setRoute('register');
     if (token) {
       localStorage.setItem('TOKEN', token);
@@ -28,7 +27,7 @@ const Register = () => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      setNotification('Password do not match');
+      toast.error('Password do not match');
       setUsername('');
       setPassword('');
       setConfirmPassword('');
@@ -38,7 +37,7 @@ const Register = () => {
     try {
       const result = await registerUser(username, password);
       if (result.error) {
-        setNotification(result.message);
+        toast.error(result.message);
         return;
       }
 
@@ -47,6 +46,8 @@ const Register = () => {
         localStorage.setItem('TOKEN', result.token);
         navigate('/');
         setRoute('home');
+        toast.success('Registration success');
+        toast.success('Logged In');
       }
     } catch (error) {
       console.error(error);
@@ -129,9 +130,6 @@ const Register = () => {
           </Link>
         </p>
       </div>
-      <span className='absolute bottom-4 text-base text-white'>
-        {notification}
-      </span>
     </form>
   );
 };

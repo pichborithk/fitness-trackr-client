@@ -3,6 +3,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { NewRoutineData, ViewRoutineContext } from '../types/types';
 import { CheckInput, Input } from '../components';
 import { updateRoutine } from '../lib/fetchRoutines';
+import { toast } from 'react-hot-toast';
 
 const EditRoutine = () => {
   const { routine, token, isOwner, refreshData } =
@@ -19,8 +20,13 @@ const EditRoutine = () => {
       try {
         const result = await updateRoutine(id, token, data);
         console.log(result);
+        if (result.error) {
+          toast.error(result.message);
+        }
+
         if (result.id) {
           await refreshData();
+          toast.success('Successful updated routine');
         }
       } catch (error) {
         console.error(error);

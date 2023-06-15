@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { Footer, Navbar, ScrollToTop } from './components';
 import { useEffect, useState } from 'react';
 import { Activity, Routine, UserData } from './types/types';
@@ -83,6 +84,7 @@ const Root = () => {
   return (
     <>
       <ScrollToTop />
+      <Toaster position='bottom-center' />
       <Navbar
         route={route}
         userData={userData}
