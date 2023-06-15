@@ -1,6 +1,6 @@
 import { Link, useOutletContext } from 'react-router-dom';
 import { RootContext } from '../types/types';
-import { RoutineCard, SearchInput } from '../components';
+import { Pagination, RoutineCard, SearchInput } from '../components';
 import { useEffect, useState } from 'react';
 
 const Routines = () => {
@@ -8,6 +8,7 @@ const Routines = () => {
     useOutletContext<RootContext>();
   const [keyword, setKeyword] = useState('');
   const [routinesFiltered, setRoutinesFiltered] = useState(publicRoutines);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (!publicRoutines) return;
@@ -28,6 +29,14 @@ const Routines = () => {
     setRoute('routines');
   }, []);
 
+  const routinesPerPage = 10;
+  const indexOfFirstRoutinesNextPage = currentPage * routinesPerPage;
+  const indexOfFirstRoutines = indexOfFirstRoutinesNextPage - routinesPerPage;
+  const routinesOfCurrentPage = routinesFiltered.slice(
+    indexOfFirstRoutines,
+    indexOfFirstRoutinesNextPage
+  );
+
   return (
     <>
       <h1 className='border-b-8 border-t-8 px-8 py-2 text-center text-4xl font-bold'>
@@ -44,8 +53,14 @@ const Routines = () => {
           </Link>
         )}
       </div>
+      <Pagination
+        routinesPerPage={routinesPerPage}
+        totalRoutines={routinesFiltered.length}
+        setPage={setCurrentPage}
+        currentPage={currentPage}
+      />
       <div className='flex w-full flex-col gap-6 px-20'>
-        {routinesFiltered.map(routine => (
+        {routinesOfCurrentPage.map(routine => (
           <RoutineCard routine={routine} key={routine.id} route={route} />
         ))}
       </div>

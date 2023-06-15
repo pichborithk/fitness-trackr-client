@@ -8,3 +8,4 @@ export { default as Input } from './Input';
 export { default as CheckInput } from './CheckInput';
 export { default as SelectInput } from './SelectInput';
 export { default as ScrollToTop } from './ScrollToTop';
+export { default as Pagination } from './Pagination';
