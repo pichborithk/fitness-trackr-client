@@ -1,6 +1,11 @@
 import { Link, useOutletContext } from 'react-router-dom';
 import { RootContext } from '../types/types';
-import { Pagination, RoutineCard, SearchInput } from '../components';
+import {
+  Pagination,
+  // Pagination3,
+  RoutineCard,
+  SearchInput,
+} from '../components';
 import { useEffect, useState } from 'react';
 
 const Routines = () => {
@@ -36,6 +41,7 @@ const Routines = () => {
     indexOfFirstRoutines,
     indexOfFirstRoutinesNextPage
   );
+  const totalPages = Math.ceil(routinesFiltered.length / routinesPerPage);
 
   return (
     <>
@@ -53,12 +59,21 @@ const Routines = () => {
           </Link>
         )}
       </div>
-      <Pagination
-        routinesPerPage={routinesPerPage}
-        totalRoutines={routinesFiltered.length}
-        setPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      {totalPages >= 5 && (
+        <Pagination
+          totalPages={totalPages}
+          setPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      )}
+      {/* {totalPages >= 3 && (
+        <Pagination3
+          totalPages={totalPages}
+          setPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      )} */}
+
       <div className='flex w-full flex-col gap-6 px-20'>
         {routinesOfCurrentPage.map(routine => (
           <RoutineCard routine={routine} key={routine.id} route={route} />
