@@ -66,14 +66,13 @@ const Routines = () => {
           currentPage={currentPage}
         />
       )}
-      {/* {totalPages >= 3 && (
+      {/* {totalPages < 5 && (
         <Pagination3
           totalPages={totalPages}
           setPage={setCurrentPage}
           currentPage={currentPage}
         />
       )} */}
-
       <div className='flex w-full flex-col gap-6 px-20'>
         {routinesOfCurrentPage.map(routine => (
           <RoutineCard routine={routine} key={routine.id} route={route} />
